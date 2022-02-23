@@ -1,0 +1,62 @@
+---
+title: "Employee data analysis"
+author: "Rimo Akther"
+date: "2/22/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load the employees data and convert it into a tibble.
+
+```{r cars}
+library(tibble)
+library(dplyr)
+```
+
+## convert the data fram into tibble
+
+```{r pressure, echo=FALSE}
+employee_data <- as_tibble(employee_data)
+```
+
+## convert the data frame into tibble
+
+```{r cars}
+employee_data <- as_tibble(employee_data)
+```
+
+## convert the data fram into gender and title variables into a factor.
+
+```{r cars}
+employee_data$gender <- as.factor(employee_data$gender)
+employee_data$title <- as.factor(employee_data$title)
+```
+
+ ## checking for missing values
+
+```{r cars}
+any(is.na(employee_data))
+```
+
+## create data frame of high earning employees
+```{r cars}
+employee.a<- employee_data %>%
+  
+select(ends_with("name"), gender, everything())%>%
+filter (salary >= 70000)%>%
+arrange(gender,last_name)
+```
+
+## saving the good earners employee numbers in a seperate data frame.
+
+```{r cars}
+good.earners<- employee.a["emp_no"]
+
+employee.b<- employee_data %>%
+group_by(title, gender)%>%
+arrange(gender,title)
+```
+
